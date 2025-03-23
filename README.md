@@ -2,27 +2,43 @@
 Le style et le confort à vos pieds.
 
 Description
-NassShoes est un site de e-commerce conçue pour offrir une expérience utilisateur intuitive et agréable, tant pour les visiteurs que pour les clients réguliers.
-Notre objectif est de faciliter la recherche et l'achat de chaussures tout en proposant une interface moderne et accessible.
+NassShoes est un site e-commerce développé en Java Spring Boot avec MySQL comme base de données. Le site permet aux utilisateurs de parcourir et acheter des chaussures via une interface simple et intuitive.
+Ce projet a pour but d’appliquer les concepts d’architecture Spring, gestion de base de données relationnelle et MVC, tout en mettant en pratique des compétences en front-end.
+
 
 Fonctionnalités principales
-Recherche avancée de produits : Trouvez rapidement vos chaussures par catégorie, prix, ou taille.
-Création de compte utilisateur : Les visiteurs peuvent s'inscrire pour bénéficier d'une expérience personnalisée.
-Gestion des avis produits : Ajoutez, modifiez ou supprimez vos avis pour partager vos impressions.
-Administration facile : Les administrateurs peuvent gérer les produits, les commandes et les retours directement depuis le tableau de bord.
+Affichage des produits : Voir une liste de chaussures avec leurs descriptions, tailles et prix.
+Gestion du panier : Ajouter, supprimer ou modifier des articles dans le panier.
+Système de commande : Finaliser une commande avec un formulaire de paiement.
+Connexion utilisateur : Inscription, connexion et gestion du profil utilisateur.
+Panneau d'administration : Gérer les produits (ajout, modification, suppression) et suivre les commandes.
 
 
 Prérequis
-Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
-- Java
-- Xamp
+
+Java JDK 11 ou version supérieure
+Maven pour la gestion des dépendances
+MySQL (port 3306)
+IDE compatible avec Spring Boot (comme IntelliJ IDEA ou Eclipse)
+XAMPP (si nécessaire pour lancer un serveur MySQL local)
 
 Installation
-Suivez ces étapes pour lancer le projet en local :
 
 Clonez le dépôt GitHub : https://github.com/NassimZoubeir/NassShoes.git
+Importez le projet dans votre IDE.
+Configurez votre base de données dans le fichier application.properties
 
-Structure du projet :
-Frontend : Géré avec  HTML/CSS et bootstrap pour une interface utilisateur moderne.
-Backend : Construit avec Java sécurisé et optimisé pour de hautes performances.
+Exécutez la commande Maven suivante pour télécharger les dépendances :
+mvn clean install  
+Lancez l’application avec la commande suivante :
+mvn spring-boot:run 
 
+
+Guide d’utilisation
+Créer un compte ou se connecter.
+Naviguer dans le catalogue de chaussures et ajouter des articles au panier.
+Finaliser votre commande en suivant les étapes du paiement.
+Si vous êtes administrateur, accédez à la section Admin pour gérer les produits et commandes.
+
+Auteur
+Zoubeir Nassim – Développeur Java Spring Boot
