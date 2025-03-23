@@ -41,4 +41,4 @@ Finaliser votre commande en suivant les étapes du paiement.
 Si vous êtes administrateur, accédez à la section Admin pour gérer les produits et commandes.
 
 Auteur
-Zoubeir Nassim – Développeur Java Spring Boot
+Zoubeir Nassim
