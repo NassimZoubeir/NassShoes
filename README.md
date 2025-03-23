@@ -1,7 +1,6 @@
 # NassShoes
 Le style et le confort à vos pieds.
 
-Description
 NassShoes est un site e-commerce développé en Java Spring Boot avec MySQL comme base de données. Le site permet aux utilisateurs de parcourir et acheter des chaussures via une interface simple et intuitive.
 Ce projet a pour but d’appliquer les concepts d’architecture Spring, gestion de base de données relationnelle et MVC, tout en mettant en pratique des compétences en front-end.
 
