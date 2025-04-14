@@ -27,17 +27,8 @@ Clonez le dépôt GitHub : https://github.com/NassimZoubeir/NassShoes.git
 Importez le projet dans votre IDE.
 Configurez votre base de données dans le fichier application.properties
 
-Exécutez la commande Maven suivante pour télécharger les dépendances :
-mvn clean install  
-Lancez l’application avec la commande suivante :
-mvn spring-boot:run 
-
-
 Guide d’utilisation
 Créer un compte ou se connecter.
 Naviguer dans le catalogue de chaussures et ajouter des articles au panier.
 Finaliser votre commande en suivant les étapes du paiement.
 Si vous êtes administrateur, accédez à la section Admin pour gérer les produits et commandes.
-
-Auteur
-Zoubeir Nassim
