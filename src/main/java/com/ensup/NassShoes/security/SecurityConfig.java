@@ -1,4 +1,4 @@
-package com.ensup.NassShoes.config;
+package com.ensup.NassShoes.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class SecurityConfig {
         http
           .authorizeHttpRequests(expressionInterceptUrlRegistry ->
             expressionInterceptUrlRegistry
-              .requestMatchers("/", "/home").permitAll()
+              .requestMatchers("/", "/accueil", "/catalogue", "/creer-compte", "/creer-compte-validation").permitAll()
               .anyRequest().authenticated()) // Restrict all other routes
           .csrf(AbstractHttpConfigurer::disable);
         return http.build();
