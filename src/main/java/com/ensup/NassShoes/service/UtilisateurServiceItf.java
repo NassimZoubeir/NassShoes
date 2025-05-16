@@ -6,4 +6,5 @@ import com.ensup.NassShoes.entity.Utilisateur;
 
 public interface UtilisateurServiceItf {
 	void creerUtilisateur(Utilisateur utilisateur);
+	Utilisateur lireUtilisateurParNom(String nom);
 }

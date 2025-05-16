@@ -32,36 +32,66 @@ public  class  UtilisateurController  {
 	public String creerUtilisateurValidation(
 	        @RequestParam String nom,
 	        @RequestParam String password,
-	        @RequestParam String mail,
+	        @RequestParam String email,
 	        @RequestParam String adresse,
 	        @RequestParam String telephone
 	) {
-	    System.out.println(nom + ", " + password + ", " + mail + ", " + adresse + ", " + telephone);
+	    System.out.println(nom + ", " + password + ", " + email + ", " + adresse + ", " + telephone);
 	    String hashPassword = null;
 
 	    try {
 	        hashPassword = Outil.hashMdpSha256(password);
 	    } catch (NoSuchAlgorithmException e) {
 	        System.out.println("ERREUR - fonction hashMdpSha256");
-	        return "erreur"; // à remplacer par une vraie page d'erreur si besoin
+	        return "erreur";
 	    }
 
-	    // Création de l'utilisateur avec les bons champs
 	    Utilisateur utilisateur = new Utilisateur();
 	    utilisateur.setNom(nom);
-	    utilisateur.setEmail(mail);
+	    utilisateur.setEmail(email);
 	    utilisateur.setPassword(hashPassword);
 	    utilisateur.setAdresse(adresse);
 	    utilisateur.setTelephone(telephone);
+	    utilisateur.setRole("utilisateur");
+
 
 	    utilisateurService.creerUtilisateur(utilisateur);
 
-	    return "Connexion"; // redirection vers la page de connexion
+	    return "Connexion";
 	}
 	 @RequestMapping("/connexion")
 	 public String connexion(Model model, HttpServletRequest request) {
 	 return "connexion";
 	 }
+	 
+	 @RequestMapping("/connexion-validation")
+	    public String nom(String nom, String password, Model model, HttpServletRequest request) {
+	    	System.out.println("==== connexion-validation ====");
+	    	System.out.println(nom + " / " + password);
+	    	String hashPassword = null;
+			try {
+				hashPassword = Outil.hashMdpSha256(password);
+			} catch (NoSuchAlgorithmException e) {
+				System.out.println("ERREUR - fonction hashMdpSha256");
+			}
+	    	System.out.println("hashPassword=" + hashPassword);
+	    	Utilisateur utilisateur = utilisateurService.lireUtilisateurParNom(nom);
+	    	System.out.println("utilisateur:" + utilisateur);
+	    	if(utilisateur.getPassword().equals(hashPassword)) {
+	    		System.out.println("Vous êtes connecté");
+	    		request.getSession().setAttribute("id",  utilisateur.getId());
+				request.getSession().setAttribute("nom",  utilisateur.getNom());
+				request.getSession().setAttribute("role",  utilisateur.getRole());
+	    	}
+	    	else System.out.println("Vous n'êtes pas connecté");
+	    	return "accueil";
+	    }
+		@GetMapping("/deconnexion")
+		public String logout(HttpServletRequest request) {
+			System.out.println("====  /deconnexion  ====");
+			request.getSession().invalidate();
+			return "accueil";
+		 }
 
 	
 }

@@ -20,4 +20,9 @@ public  class UtilisateurService implements UtilisateurServiceItf {
 		utilisateurRepository.save(utilisateur);	
 	}
 	
+	@Override
+	public Utilisateur lireUtilisateurParNom(String nom) {
+		return utilisateurRepository.findByNom(nom);
+	}
+	
 }
