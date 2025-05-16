@@ -17,6 +17,7 @@ public class SecurityConfig {
           .authorizeHttpRequests(expressionInterceptUrlRegistry ->
             expressionInterceptUrlRegistry
               .requestMatchers("/", "/accueil", "/catalogue", "/creer-compte", "/creer-compte-validation", "/connexion","/deconnexion","/connexion-validation","/css/**", "/images/**", "/assets/**").permitAll()
+              .requestMatchers("/creer-chaussures").hasRole("administrateur")
               .anyRequest().authenticated()) // Restrict all other routes
           .csrf(AbstractHttpConfigurer::disable);
         return http.build();

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter des chaussures</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div layout:fragment="content" class="container my-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
+        <h2 class="text-center text-primary mb-4">Ajouter des chaussures</h2>
+
+        <form action="/creer-chaussure-validation" method="POST" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" id="nom" name="nom" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="prix" class="form-label">Prix (€)</label>
+                <input type="number" id="prix" name="prix" class="form-control" step="0.01" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" id="stock" name="stock" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="couleur" class="form-label">Couleur</label>
+                <input type="text" id="couleur" name="couleur" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+                <label for="id_categorie" class="form-label">Catégorie</label>
+                <select id="id_categorie" name="id_categorie" class="form-select" required>
+                    <option value="" disabled selected>Sélectionnez une catégorie</option>
+                    <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}"></option>
+                </select>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -12,8 +12,9 @@
             <nav>
                 <ul class="nav">
 					<li class="nav-item"><a href="/accueil" class="nav-link text-white">Accueil</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white">Catalogue</a></li>
-                    <li class="nav-item"><a href="/creer-compte" class="nav-link text-white">Inscription</a></li>
+                    <li class="nav-item"><a href="/catalogue" class="nav-link text-white">Catalogue</a></li>
+                    <li class="nav-item"><a href="/creer-compte" th:if="${session.id == null}" class="nav-link text-white">Inscription</a></li>
+					<li class="nav-item"><a href="/creer-chaussures" th:if="${session.role == 'administrateur'}" class="nav-link text-white">Ajouter des chaussures</a></li>
                     <li class="nav-item"><a href="/connexion" th:if="${session.id == null}" class="nav-link text-white">Connexion</a></li>
 					<li class="nav-item"><a href="/deconnexion" th:if="${session.id != null}" class="nav-link text-white">Déconnexion</a></li>
                 </ul>
