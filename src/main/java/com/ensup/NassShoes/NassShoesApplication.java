@@ -1,13 +1,13 @@
 package com.ensup.NassShoes;
 
-import java.security.NoSuchAlgorithmException;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ensup.NassShoes.entity.Utilisateur;
-import com.ensup.NassShoes.outil.Outil;
 import com.ensup.NassShoes.repository.UtilisateurRepository;
 
 
@@ -21,24 +21,16 @@ public class NassShoesApplication {
 		initialiser();
 	}
 	public static void initialiser() {
-	    Utilisateur utilisateur = null;
 	    
-	    try {
-	        String hashPassword = Outil.hashMdpSha256("nass");
-	        Utilisateur utilisateur1 = new Utilisateur("nass","nass@gmail.com",hashPassword,"1 rue de la paix","0600000000","utilisateur");
-	        utilisateurRepository.save(utilisateur1);
-	    } catch (NoSuchAlgorithmException e) {
-	        System.out.println("❌ Impossible de créer l'utilisateur 'nass'");
-	    }
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-	    try {
-	        String hashPassword = Outil.hashMdpSha256("admin");
-	        Utilisateur utilisateur2 = new Utilisateur("admin","admin@gmail.com", hashPassword,"2 avenue des Champs","0611111111","administrateur");
-	        utilisateurRepository.save(utilisateur2);
-	    } catch (NoSuchAlgorithmException e) {
-	        System.out.println("❌ Impossible de créer l'utilisateur 'admin'");
-	    }
+		String hashPassword1 = passwordEncoder.encode("nass");
+		Utilisateur utilisateur1 = new Utilisateur("nass", "nass@gmail.com", hashPassword1, "1 rue de la paix", "0600000000", "ROLE_UTILISATEUR");
+		utilisateurRepository.save(utilisateur1);
 
+		String hashPassword2 = passwordEncoder.encode("admin");
+		Utilisateur utilisateur2 = new Utilisateur("admin", "admin@gmail.com", hashPassword2, "2 avenue des Champs", "0611111111", "ROLE_ADMINISTRATEUR");
+		utilisateurRepository.save(utilisateur2);
 
 	}
 

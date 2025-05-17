@@ -17,18 +17,11 @@ import com.ensup.NassShoes.entity.Categorie;
 import com.ensup.NassShoes.repository.CategorieRepository;
 import com.ensup.NassShoes.service.ChaussuresService;
 
-import jakarta.persistence.criteria.Path;
 import jakarta.servlet.ServletContext;
 
 @Controller
 public class ChaussuresController {
-	
-	 @RequestMapping("/creer-chaussures")
-	 public String creerChaussures(Model model) {
-	 model.addAttribute("titre", "Créer chaussures");
-	 return "creer-chaussures";
-	 }
-	 
+		 
 	 @Autowired
 	 private ServletContext context;
 
@@ -40,8 +33,15 @@ public class ChaussuresController {
 
 	 @Autowired
 	 private ChaussuresService chaussureService;
+	 
+	 @RequestMapping("/creer-chaussures")
+	 public String creerChaussures(Model model) {
+	 model.addAttribute("titre", "Créer chaussures");
+	 model.addAttribute("categories", categorieRepository.findAll());
+	 return "creer-chaussures";
+	 }
 
-	 @RequestMapping("/creer-chaussure-validation")
+	 @RequestMapping("/creer-chaussures-validation")
 	 public String creerValidationChaussure(
 	         String nom,
 	         String description,

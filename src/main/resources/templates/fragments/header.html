@@ -13,10 +13,10 @@
                 <ul class="nav">
 					<li class="nav-item"><a href="/accueil" class="nav-link text-white">Accueil</a></li>
                     <li class="nav-item"><a href="/catalogue" class="nav-link text-white">Catalogue</a></li>
-                    <li class="nav-item"><a href="/creer-compte" th:if="${session.id == null}" class="nav-link text-white">Inscription</a></li>
-					<li class="nav-item"><a href="/creer-chaussures" th:if="${session.role == 'administrateur'}" class="nav-link text-white">Ajouter des chaussures</a></li>
-                    <li class="nav-item"><a href="/connexion" th:if="${session.id == null}" class="nav-link text-white">Connexion</a></li>
-					<li class="nav-item"><a href="/deconnexion" th:if="${session.id != null}" class="nav-link text-white">Déconnexion</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()"><a href="/creer-compte" class="nav-link text-white">Inscription</a></li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATEUR')"><a href="/creer-chaussures" class="nav-link text-white">Ajouter des chaussures</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()"><a href="/connexion" class="nav-link text-white">Connexion</a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a href="/deconnexion" class="nav-link text-white">Déconnexion</a></li>
                 </ul>
             </nav>
 
@@ -26,9 +26,7 @@
                     <input type="text" class="form-control" placeholder="Rechercher...">
                     <button class="btn btn-light ms-2" type="submit">Chercher</button>
                 </form>
-                <a href="#" class="btn btn-outline-light">
-                    🛒 Panier
-                </a>
+                <a href="#" class="btn btn-outline-light">🛒 Panier </a>
             </div>
 
         </div>

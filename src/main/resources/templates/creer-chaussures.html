@@ -3,6 +3,7 @@
 <head>
     <title>Ajouter des chaussures</title>
     <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -10,7 +11,7 @@
     <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
         <h2 class="text-center text-primary mb-4">Ajouter des chaussures</h2>
 
-        <form action="/creer-chaussure-validation" method="POST" enctype="multipart/form-data">
+        <form action="/creer-chaussures-validation" method="POST" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
@@ -44,7 +45,7 @@
 
             <div class="mb-3">
                 <label for="id_categorie" class="form-label">Catégorie</label>
-                <select id="id_categorie" name="id_categorie" class="form-select" required>
+                <select id="id_categorie" name="id_categorie" class="form-select">
                     <option value="" disabled selected>Sélectionnez une catégorie</option>
                     <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}"></option>
                 </select>

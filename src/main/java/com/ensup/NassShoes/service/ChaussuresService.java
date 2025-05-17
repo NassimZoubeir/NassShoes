@@ -1,6 +1,8 @@
 package com.ensup.NassShoes.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class ChaussuresService implements ChaussuresServiceItf {
 	
 	@Autowired
 	private ChaussuresRepository chaussuresRepository;
+	
+	public List<Chaussures> getAllChaussures() {
+	    return chaussuresRepository.findAll();
+	}
 	
 	 @Override
 	 public void creerChaussures(Chaussures chaussures) {

@@ -1,5 +1,7 @@
 package com.ensup.NassShoes.entity;
 
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class Chaussures {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "id_chaussures")
 	    private Long id;
 
 	    private String nom;
