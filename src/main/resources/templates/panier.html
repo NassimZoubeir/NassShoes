@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <title>Panier - NassShoes</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: navbar}"></div>
+    <div layout:fragment="content" class="container my-5">
+        <h1 class="text-center">Panier</h1>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover shadow-sm">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Catégorie</th>
+                        <th>Prix (€)</th>
+                        <th>Couleur</th>
+                        <th>Stock</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="chaussure : ${chaussureAcheterList}" class="align-middle">
+                        <td th:text="${chaussure.idChaussures}" class="text-center"></td>
+                        <td class="text-center">
+                            <img width="80" class="img-thumbnail" th:src="'/images/' + ${chaussure.imageURL}" alt="Image chaussure">
+                        </td>
+                        <td th:text="${chaussure.nom}"></td>
+                        <td th:text="${chaussure.categorie.nom}"></td>
+                        <td th:text="${chaussure.prix}"></td>
+                        <td th:text="${chaussure.couleur}"></td>
+                        <td th:text="${chaussure.stock}" class="text-center"></td>
+                        <td class="text-center">
+                            <a th:href="'/afficher-chaussure/' + ${chaussure.idChaussures}" class="btn btn-info btn-sm">Détail</a>
+                        </td>
+                        <td class="text-center">
+                            <a th:href="'/supprimer-panier/' + ${chaussure.idChaussures}" class="btn btn-danger btn-sm">Supprimer du panier</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/valider-panier" class="btn btn-success btn-lg">Valider le panier</a>
+        </div>
+    </div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

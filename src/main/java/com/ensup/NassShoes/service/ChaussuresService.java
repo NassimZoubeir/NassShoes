@@ -24,5 +24,9 @@ public class ChaussuresService implements ChaussuresServiceItf {
 	 public void creerChaussures(Chaussures chaussures) {
 	 chaussuresRepository.save(chaussures);
 	 }
+	 @Override
+	    public List<Chaussures> getChaussureAcheterListParIdList(List<Long> ids) {
+	        return chaussuresRepository.findAllById(ids);
+	    }
 	
 }

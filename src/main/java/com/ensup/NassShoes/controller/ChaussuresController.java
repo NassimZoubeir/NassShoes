@@ -2,7 +2,9 @@ package com.ensup.NassShoes.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,7 @@ import com.ensup.NassShoes.repository.CategorieRepository;
 import com.ensup.NassShoes.service.ChaussuresService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ChaussuresController {
@@ -56,8 +59,7 @@ public class ChaussuresController {
 	     if (image != null && !image.isEmpty()) {
 	         try {
 	             imageName = image.getOriginalFilename();
-	             java.nio.file.Path pathFile = Paths.get(imageDir, imageName);
-
+	             Path pathFile = Paths.get(imageDir, imageName);
 	             System.out.println("Chemin de l'image : " + pathFile.toString());
 
 	             File directory = new File(imageDir);
@@ -65,7 +67,7 @@ public class ChaussuresController {
 	                 directory.mkdirs();
 	             }
 
-	             image.transferTo(((java.nio.file.Path) pathFile).toFile());
+	             image.transferTo(pathFile.toFile());
 	         } catch (IllegalStateException | IOException e) {
 	             e.printStackTrace();
 	             System.err.println("Erreur lors de l'enregistrement de l'image : " + e.getMessage());
@@ -92,6 +94,27 @@ public class ChaussuresController {
 
 	     return "redirect:/catalogue";
 	 }
+	 @RequestMapping("/afficher-panier")
+	 public String afficherPanier(Model model, HttpServletRequest request) {
+	     System.out.println("==== /afficher-panier ====");
+
+	     // Récupération de la liste des IDs des chaussures en session
+	     List<Long> chaussureAcheterListId = (List<Long>) request.getSession().getAttribute("chaussureAcheterListId");
+	     System.out.println("chaussureAcheterListId=" + chaussureAcheterListId);
+
+	     if (chaussureAcheterListId != null && !chaussureAcheterListId.isEmpty()) {
+	         // Appel au service pour récupérer la liste des chaussures à partir des IDs
+	         List<Chaussures> chaussureAcheterList = chaussureService.getChaussureAcheterListParIdList(chaussureAcheterListId);
+	         model.addAttribute("chaussureAcheterList", chaussureAcheterList);
+	     } else {
+	         System.out.println("Pas de chaussures dans le panier");
+	     }
+
+	     model.addAttribute("denomination", "Achat de chaussures");
+
+	     return "panier";  // Nom de la vue Thymeleaf (panier.html)
+	 }
+
 
 	
 }
